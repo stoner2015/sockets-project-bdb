@@ -22,7 +22,7 @@ function renderizarUsuarios(personas) {
 
     for (var i = 0; i < personas.length; i++) {;
         html += '<li>';
-        html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-success">online</small></span></a>';
+        html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="assets/images/users/' + personas[i].avatar + '.png" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-success">online</small></span></a>';
         html += '</li>'
     }
 
@@ -46,13 +46,13 @@ function renderizarMensajes(mensaje, me) {
         htmlMensaje += '        <h5>' + mensaje.nombre + '</h5>';
         htmlMensaje += '        <div class="box bg-light-inverse">' + mensaje.mensaje + '</div>';
         htmlMensaje += '    </div>';
-        htmlMensaje += '    <div class="chat-img"><img src="assets/images/users/5.jpg" alt="user" /></div>';
+        htmlMensaje += '    <div class="chat-img"><img src="assets/images/users/' + mensaje.avatar + '.png" alt="user" /></div>';
         htmlMensaje += '    <div class="chat-time">' + hora + '</div>';
         htmlMensaje += '</li>';
     } else {
         htmlMensaje += '<li class="animated fadeIn">';
         if (mensaje.nombre !== 'Administrador') {
-            htmlMensaje += '    <div class="chat-img"><img src="assets/images/users/1.jpg" alt="user" /></div>';
+            htmlMensaje += '    <div class="chat-img"><img src="assets/images/users/' + mensaje.avatar + '.png" alt="user" /></div>';
         }
 
         htmlMensaje += '    <div class="chat-content">';
@@ -102,7 +102,8 @@ formEnviar.on('submit', function(e) {
     // console.log(`chanfle ${txtMensaje.val()}`);
     socket.emit('enviarMensaje', {
         usuario: nombre,
-        mensaje: txtMensaje.val()
+        mensaje: txtMensaje.val(),
+        avatar: 'u10'
     }, function(mensaje) {
         // console.log('respuesta del servidor:', mensaje);
         txtMensaje.val('').focus();

@@ -4,8 +4,8 @@ class Usuarios {
     }
 
 
-    agregarPersona(id, nombre, sala) {
-        let persona = { id, nombre, sala };
+    agregarPersona(id, nombre, sala, avatar) {
+        let persona = { id, nombre, sala, avatar };
         this.personas.push(persona);
         return this.personas;
     }
